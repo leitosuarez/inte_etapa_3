@@ -10,7 +10,7 @@ import cors from 'cors'
 const app = express()
 
 //constantes
-const PORT = process.env.PORT
+const PORT = process.env.PORT //NO SE CARGA EN EL REMOTO LA VARIABLE PORT
 //const URI_DB = process.env.URI_LOCAl
 const URI_DB = process.env.URI_REMOTA
 const URL_FRONT = process.env.URL_FRONTEND_CORS
