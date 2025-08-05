@@ -1,6 +1,6 @@
 import express from 'express'
+import productosController from '../controllers/productos.controller.js'
 const routerProducts = express.Router()
-import productosController from '../controllers/procutos.controller.js'
 
 //http://localhost:8080/api/v1/productos
 
