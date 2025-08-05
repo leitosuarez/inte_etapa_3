@@ -9,6 +9,7 @@ const getAllProducts = async (req,res)=>{
     } catch (error) {
         //throw error
         res.json({mensaje:'error'}).status(404)
+        console.log(error)
     }
 }
 
