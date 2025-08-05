@@ -7,6 +7,7 @@ const productSchema = mongoose.Schema({
     stock:Number,
     categoria:String,
     detalles:String,
+    marca:String,
     foto:String,
     envio:Boolean
 
@@ -41,11 +42,12 @@ const getOneProductDb = async (id)=>{ //6888e87674784a0b33718dc4
 const createProductDb = async (newProduct)=>{
 
     try {  
-        const userCreated = await productModel.insertOne(newProduct)
-        return userCreated
+        const productToCreate = new productModel(newProduct)
+        const productCreated = productToCreate.save()
         //otra forma de hacerlo:
-        //const productToCreate = new productModel(newProduct)
-        //const productCreated = productToCreate.save()
+        //const userCreated = await productModel.insertOne(newProduct)
+        //return userCreated
+        return productCreated
     } catch (error) {
         throw new Error('No se pudo realizar la peticion',error)
     }
@@ -55,7 +57,8 @@ const createProductDb = async (newProduct)=>{
 const editeProductDb = async (id,bodyProdToUpdate)=> {
 
     try {
-        const editedProduct = await productModel.updateOne({_id:id},{$set:{...bodyProdToUpdate}, new:true})//new:false devuelve la ultima version del documento antes de la edicion, true devuelve la ultima, osea ya editado
+        const editedProduct = await productModel.findByIdAndUpdate(id,bodyProdToUpdate, {new:true})
+        /* const editedProduct = await productModel.updateOne({_id:id},{$set:{...bodyProdToUpdate}, new:true}) *///new:false devuelve la ultima version del documento antes de la edicion, true devuelve la ultima, osea ya editado
         return editedProduct
     } catch (error) {
         throw new Error('No se pudo realizar la peticion',error)
