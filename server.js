@@ -6,13 +6,14 @@ import routerUsers from './routers/usuarios.router.js'
 import routerUploads from './routers/upload.router.js'
 import path from 'node:path'
 import cors from 'cors'
+import routerCarrito from './routers/carrito.router.js'
 
 const app = express()
 
 //constantes
 const PORT = process.env.PORT //NO SE CARGA EN EL REMOTO LA VARIABLE PORT
 //const URI_DB = process.env.URI_LOCAl
-const URI_DB = process.env.URI_REMOTA
+const URI_DB = process.env.URI_LOCAL
 const URL_FRONT = process.env.URL_FRONTEND_CORS
 //console.log(URI_DB)
 
@@ -33,6 +34,7 @@ app.get('/', (req,res)=>{
 app.use('/api/v1/productos', routerProducts)
 app.use('/api/v1/usuarios', routerUsers)
 app.use('/api/v1/uploads', routerUploads)
+app.use('/api/v1/carrito', routerCarrito)
 
 //http://localhost:8080/api/v1/productos
 
