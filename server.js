@@ -32,7 +32,7 @@ app.get('/', (req,res)=>{
 })
 
 app.use('/api/v1/productos', routerProducts)
-app.use('/api/v1/usuarios', routerUsers)
+app.use('/api/v1/usuarios', routerUsers) //-> tengo que hacerlo
 app.use('/api/v1/uploads', routerUploads)
 app.use('/api/v1/carrito', routerCarrito)
 
