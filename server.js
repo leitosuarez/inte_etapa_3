@@ -14,12 +14,18 @@ const app = express()
 const PORT = process.env.PORT //NO SE CARGA EN EL REMOTO LA VARIABLE PORT
 //const URI_DB = process.env.URI_LOCAl
 const URI_DB = process.env.URI_REMOTA
-const URL_FRONT = process.env.URL_FRONTEND_CORS
+const URL_FRONT = process.env.URL_FRONTEND_CORS.split(',') //-> crea array con las url accecibles, cada una esta separas por ","
 //console.log(URI_DB)
 
 //configuaraciones
 const corsConfig = {
-    origin:URL_FRONT //prod: url completa de netlify, la url a mi front end ; dev: puerto de vite 5173 o 3000 no me acuerdo
+    origin: function(origin, callback){
+        if(!origin || URL_FRONT.includes(origin)){
+            callback(null, true)
+        } else {
+            callback(new Error('Origin error, not CORS allowed'))
+        }
+    } //prod: url completa de netlify, la url a mi front end ; dev: puerto de vite 5173 o 3000 no me acuerdo
 }
 //middlewares
 app.use(express.json())
